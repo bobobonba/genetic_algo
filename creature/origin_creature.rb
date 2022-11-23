@@ -3,7 +3,7 @@ module GeneticAlgo
     class OriginCreature
       attr_reader :chromosome
 
-      def initialize(chromosome_size, gene_types, init_chromosome: nil)
+      def initialize(chromosome_size=nil, gene_types=nil, init_chromosome: nil)
         @chromosome_size = chromosome_size
         @gene_types = gene_types
         

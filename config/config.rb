@@ -3,7 +3,7 @@ require 'yaml'
 module GeneticAlgo
   module Config
     class Config
-      attr_reader(:generation, :group_size, :creature_class, :chromosome_size, :gene_types, :eval_class,\
+      attr_reader(:yaml_hash, :generation, :group_size, :creature_class, :chromosome_size, :gene_types, :eval_class,\
                   :select_class, :selected_group_size, :crossover_class, :crossover_group_size, \
                   :crossover_probability, :mutation_class, :mutation_probability, :mutated_gene_number)
 
@@ -34,6 +34,7 @@ module GeneticAlgo
         @crossover_path = @yaml_hash['crossover_path']
         require_file(@crossover_path)
         @crossover_class = convert_to_class(@yaml_hash['crossover_class'])
+        @crossover_convi_number = @yaml_hash['crossover_convi_number']
         @crossover_probability = @yaml_hash['crossover_probability']
         @crossover_group_size = @yaml_hash['crossover_group_size']
 

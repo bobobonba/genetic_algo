@@ -44,6 +44,9 @@ crossover_path: '../environment/crossover/uniform_crossover.rb'
 
 #使用するcrossoverクラス
 crossover_class: 'GeneticAlgo::Crossover::UniformCrossover'
+
+#交叉に使用されるcreatureの数
+crossover_convi_number: 2
 #交叉が行われる確率
 crossover_probability: 0.9
 #交叉によって生成される個体数
