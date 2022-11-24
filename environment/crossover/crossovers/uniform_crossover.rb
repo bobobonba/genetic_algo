@@ -1,20 +1,20 @@
-module GeneticAlgo
-  module Crossover
-    class UniformCrossover
-      def self.uniform_crossover(f_gene, m_gene)
-        female_gene = f_gene.map{|g| g }
-        male_gene = m_gene.map{|g| g }
-        bit_mask = Array.new(female_gene.size) { rand(0..1) }
+require_relative '../abstract_crossover.rb'
 
-        bit_mask.each.with_index do |bit, index|
-          if bit.zero?
-            tmp = female_gene[index]
-            female_gene[index] = male_gene[index]
-            male_gene[index] = tmp
-          end
-        end
-        [female_gene, male_gene]
+class UniformCrossover < GeneticAlgo::Environment::Crossover::AbstractCrossover
+  def self.crossover_logic(chromosomes)
+    female_chromo = chromosomes.first.map{ |g| g }
+    male_chromo = chromosomes.last.map{ |g| g }
+    #puts "f: #{female_chromo}"
+    #puts "m: #{male_chromo}"
+    bit_mask = Array.new(female_chromo.size) { rand(0..1) }
+
+    bit_mask.each.with_index do |bit, index|
+      if bit.zero?
+        tmp = female_chromo[index]
+        female_chromo[index] = male_chromo[index]
+        male_chromo[index] = tmp
       end
     end
+    [female_chromo, male_chromo]
   end
 end

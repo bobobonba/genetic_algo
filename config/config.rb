@@ -4,15 +4,18 @@ module GeneticAlgo
   module Config
     class Config
       attr_reader(:yaml_hash, :generation, :group_size, :creature_class, :chromosome_size, :gene_types, :eval_class,\
-                  :select_class, :selected_group_size, :crossover_class, :crossover_group_size, \
+                  :select_class, :selected_group_size, :crossover_class, :crossover_group_size, :crossover_convi_number, \
                   :crossover_probability, :mutation_class, :mutation_probability, :mutated_gene_number)
 
 
 
       def initialize(file_path)
         @config_file_path = file_path
-        @yaml_hash = open(File.expand_path(@config_file_path, File.dirname(__FILE__))) { |file| YAML.load(file) }
+        @yaml_hash = open(File.expand_path(@config_file_path, File.dirname(__FILE__))) { |file| YAML.unsafe_load(file) }
 
+        @life_cycle_path = @yaml_hash['life_cycle_path']
+        require_file(@life_cycle_path)
+        @life_cycle_class = ['life_cycle_class']
         @generation = @yaml_hash['generation']
         @group_size = @yaml_hash['group_size']
 

@@ -1,5 +1,13 @@
+#世代のlife cycleクラスが定義されているファイルの場所
+#configディレクトリからの相対パスか、絶対パス
+life_cycle_path: '../environment/life_cycle/simple_life_cycle.rb'
+
+#使用するlifecycleクラス
+life_cycle_class: 'GeneticAlgo::LifeCycle:::SimpleLifeCycle'
+
 #世代数
 generation: 100
+
 
 #creatureクラスが定義されているファイルの場所
 #configディレクトリからの相対パスか、絶対パス
@@ -8,58 +16,55 @@ creature_path: '../creature/origin_creature.rb'
 #使用するcreatureクラス
 creature_class: 'GeneticAlgo::Creature::OriginCreature'
 #個体数
-group_size: 100
+group_size: 50
 
 #個体の遺伝子長
-chromosome_size: 100
+chromosome_size: 2
 
 #個体の遺伝子の種類
 #rangeオブジェクトでも可
-gene_types:
-- 'A'
-- 'B'
-- 'C'
+gene_types: !ruby/range -100..100
 
 
 #evalクラスが定義されているファイルの場所
 #configディレクトリからの相対パスか、絶対パス
-eval_path: '../environment/evaluation/evaluator.rb'
+eval_path: '../environment/evaluation/evaluations/evaluator.rb'
 
 #使用するevalクラスの指定
 #Module.const_get　を使えば文字列でクラス指定ができるかもしれない
-eval_class: 'GeneticAlgo::Evaluation::Evaluator'
+eval_class: 'TestEvaluator'
 
 #selectクラスが定義されているファイルの場所
 #configディレクトリからの相対パスか、絶対パス
-select_path: '../environment/select/roulette_select.rb'
+select_path: '../environment/select/selects/roulette_select.rb'
 
 #使用するselectクラス
-select_class: 'GeneticAlgo::Select::RouletteSelect'
+select_class: 'RouletteSelect'
 #選択が行われる際に選ばれる個体数
-selected_group_size: 25
+selected_group_size: 30
 
 #crossoverクラスが定義されているファイルの場所
 #configディレクトリからの相対パスか、絶対パス
-crossover_path: '../environment/crossover/uniform_crossover.rb'
+crossover_path: '../environment/crossover/crossovers/uniform_crossover.rb'
 
 #使用するcrossoverクラス
-crossover_class: 'GeneticAlgo::Crossover::UniformCrossover'
+crossover_class: 'UniformCrossover'
 
 #交叉に使用されるcreatureの数
 crossover_convi_number: 2
 #交叉が行われる確率
 crossover_probability: 0.9
 #交叉によって生成される個体数
-crossover_group_size: 50
+crossover_group_size: 20
 
 
 #mutationクラスが定義されているファイルの場所
 #configディレクトリからの相対パスか、絶対パス
-mutation_path: '../environment/mutation/random_mutation.rb'
+mutation_path: '../environment/mutation/mutations/random_mutation.rb'
 
 #使用するmutationクラス
-mutation_class: 'GeneticAlgo::Mutation::RandomMutation'
+mutation_class: 'RandomMutation'
 #突然変異がおこる確率
 mutation_probability: 0.01
 #突然変異する遺伝子の数
-mutated_gene_number: 25
+mutated_gene_number: 1

@@ -1,19 +1,15 @@
-module GeneticAlgo
-  module Mutation
-    class RandomMutation
-      def self.random_mutation(g, mutate_num, g_types)
-        gene = g.map{ |g| g }
-        gene_types = g_types.map{ |g| g }
+require_relative '../abstract_mutation.rb'
 
-        mutate_index = (0...gene.size).to_a.sample(mutate_num)
-
-        mutate_index.each do |index|
-          gene[index] = gene_types.select{ |g| g != gene[index] }.sample
-        end
-        
-        gene
-      end
+class RandomMutation < GeneticAlgo::Environment::Mutation::AbstractMutation
+  def self.mutation_logic(chromo, mutated_num, g_types)
+    chromosome = chromo.map{ |g| g }
+    gene_types = g_types.map{ |g| g }
+    mutate_index = (0...chromosome.size).to_a.sample(mutated_num)
+    mutate_index.each do |index|
+      chromosome[index] = gene_types.select{ |g| g != chromosome[index] }.sample
     end
+    chromosome
   end
 end
+
 

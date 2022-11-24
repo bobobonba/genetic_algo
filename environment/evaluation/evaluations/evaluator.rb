@@ -1,22 +1,14 @@
-require 'csv'
+require_relative '../abstract_eval.rb'
 
-module GeneticAlgo
-  module Evaluation
-    class Evaluator
-      def self.eval(creatures_gene)
-        collect_answers = CSV.open('./problem.csv').map {|row| row[1] }
-        fitness_array = creatures_gene.map do |gene|
-          point = 0
-          collect_answers.each.with_index do |answer, index|
-            if answer == gene[index]
-              point += 1
-            end
-          end
-          point
-        end
-
-        fitness_array
+class TestEvaluator < GeneticAlgo::Environment::Evaluation::AbstractEval
+  def eval_logic(chromosome)
+    answer = ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C']
+    point = 0
+    answer.each.with_index do |ans, index|
+      if ans == chromosome[index]
+        point += 1
       end
     end
+    point
   end
 end
